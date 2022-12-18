@@ -9,6 +9,7 @@ import {
   FlatList,
   TouchableOpacity,
   Alert,
+  ActivityIndicator,
 } from 'react-native';
 import Spacer from '../../components/Spacer';
 import {getUserData} from '../../utils/api';
@@ -20,14 +21,32 @@ import RenderUserInfo from './RenderUserInfo';
 // create a component
 const LoadMoreFlatlist = () => {
   const [data, setData] = useState<userDataType[]>([]);
+  const [page, setPage] = useState<number>(0);
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     callApi();
   }, []);
 
   const callApi = async () => {
-    let result = await getUserData();
-    setData(result);
+    setLoading(true);
+    try {
+      let result = await getUserData(page);
+      if (result) {
+        setLoading(false);
+        if (data.length >= 0) {
+          setData([...data, ...result]); //merging next array with previous
+        } else {
+          setData(result);
+        }
+      } else {
+        Alert.alert('Thank You', 'All Records Completed');
+      }
+      setPage(page + 1);
+    } catch {
+      setLoading(false);
+      Alert.alert('Catch', 'No Data Found');
+    }
   };
 
   const handleHeaderPress = () => {
@@ -57,8 +76,18 @@ const LoadMoreFlatlist = () => {
               profile={item?.picture}
             />
           )}
+          onEndReached={() => {
+            callApi();
+          }}
+          onEndReachedThreshold={1}
         />
       </View>
+      {loading ? (
+        <View style={styles.loader}>
+          <ActivityIndicator color={'blue'} size={'large'} />
+          <Text style={{marginLeft: 5}}>Loading...</Text>
+        </View>
+      ) : null}
     </SafeAreaView>
   );
 };
@@ -66,7 +95,7 @@ const LoadMoreFlatlist = () => {
 // define your styles
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    // flex: 1,
     // backgroundColor: '#fff',
     // padding: 20,
     margin: 20,
@@ -82,10 +111,22 @@ const styles = StyleSheet.create({
   },
   userRow: {
     flexDirection: 'row',
+    marginBottom: 100,
   },
   headerText: {
     fontSize: 18,
     fontWeight: 'bold',
+  },
+  loader: {
+    width: '100%',
+    height: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+    position: 'absolute',
+    bottom: 20,
+    backgroundColor: '#fff',
+    borderRadius: 10,
   },
 });
 
