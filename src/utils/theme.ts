@@ -1,2 +1,4 @@
-export const bgColor = '#FFFFFF';
-export const textColor = '#000000';
+export const Colors = {
+  bgColor: '#FFFFFF',
+  textColor: '#000000',
+};

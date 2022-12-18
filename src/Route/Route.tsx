@@ -2,15 +2,10 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React, {Component} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
+import CustomDropdown from '../screens/CustomDropdown/CustomDropdown';
 import DarkLightTheme from '../screens/DarkLightTheme/DarkLightTheme';
-
-function HomeScreen() {
-  return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text>Home Screen</Text>
-    </View>
-  );
-}
+import DynamicForm from '../screens/DynamicForm/DynamicForm';
+import LoadMoreFlatlist from '../screens/LoadMoreFlatlist/LoadMoreFlatlist';
 
 const Stack = createNativeStackNavigator();
 
@@ -18,13 +13,14 @@ const Stack = createNativeStackNavigator();
 const Route = () => {
   return (
     <Stack.Navigator
-      screenOptions={
-        {
-          // headerShown: false,
-        }
-      }>
-      {/* <Stack.Screen name="Home" component={HomeScreen} /> */}
+      initialRouteName="LoadMoreFlatlist"
+      screenOptions={{
+        headerShown: false,
+      }}>
       <Stack.Screen name="DarkLightTheme" component={DarkLightTheme} />
+      <Stack.Screen name="CustomDropdown" component={CustomDropdown} />
+      <Stack.Screen name="DynamicForm" component={DynamicForm} />
+      <Stack.Screen name="LoadMoreFlatlist" component={LoadMoreFlatlist} />
     </Stack.Navigator>
   );
 };
