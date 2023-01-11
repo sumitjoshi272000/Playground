@@ -6,6 +6,7 @@ import CustomDropdown from '../screens/CustomDropdown/CustomDropdown';
 import DarkLightTheme from '../screens/DarkLightTheme/DarkLightTheme';
 import DynamicForm from '../screens/DynamicForm/DynamicForm';
 import LoadMoreFlatlist from '../screens/LoadMoreFlatlist/LoadMoreFlatlist';
+import Stripe from '../screens/Stripe/Stripe';
 
 const Stack = createNativeStackNavigator();
 
@@ -13,7 +14,7 @@ const Stack = createNativeStackNavigator();
 const Route = () => {
   return (
     <Stack.Navigator
-      initialRouteName="LoadMoreFlatlist"
+      initialRouteName="Stripe"
       screenOptions={{
         headerShown: false,
       }}>
@@ -21,6 +22,7 @@ const Route = () => {
       <Stack.Screen name="CustomDropdown" component={CustomDropdown} />
       <Stack.Screen name="DynamicForm" component={DynamicForm} />
       <Stack.Screen name="LoadMoreFlatlist" component={LoadMoreFlatlist} />
+      <Stack.Screen name="Stripe" component={Stripe} />
     </Stack.Navigator>
   );
 };

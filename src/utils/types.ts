@@ -12,3 +12,9 @@ export interface userInfoType {
   lname: string;
   profile: string;
 }
+
+export interface IButtonProps {
+  text: string;
+  onPress?: () => void;
+  disabled?: boolean;
+}
