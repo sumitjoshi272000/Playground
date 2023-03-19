@@ -5,18 +5,18 @@ import {Text, View} from 'react-native';
 import Route from './src/Route/Route';
 import DarkLightTheme from './src/screens/DarkLightTheme/DarkLightTheme';
 import {LogBox} from 'react-native';
+import {Provider} from 'react-redux';
+import {store} from './src/screens/ReduxExample/app/store';
 LogBox.ignoreAllLogs(); //Ignore all log notifications
 
 // create a component
 const App = () => {
   return (
-    <NavigationContainer>
-      {/* <DarkLightTheme />*/}
-      <Route />
-      {/* <View>
-        <Text>Hello</Text>
-      </View> */}
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <Route />
+      </NavigationContainer>
+    </Provider>
   );
 };
 

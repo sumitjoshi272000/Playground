@@ -4,9 +4,10 @@ import React, {Component} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import CustomDropdown from '../screens/CustomDropdown/CustomDropdown';
 import DarkLightTheme from '../screens/DarkLightTheme/DarkLightTheme';
-import DynamicForm from '../screens/DynamicForm/DynamicForm';
+import ReduxExample from '../screens/ReduxExample/ReduxExample';
 import LoadMoreFlatlist from '../screens/LoadMoreFlatlist/LoadMoreFlatlist';
 import Stripe from '../screens/Stripe/Stripe';
+import ThunkExample from '../screens/ReduxExample/ThunkExample';
 
 const Stack = createNativeStackNavigator();
 
@@ -14,15 +15,16 @@ const Stack = createNativeStackNavigator();
 const Route = () => {
   return (
     <Stack.Navigator
-      initialRouteName="Stripe"
+      initialRouteName="ReduxExample"
       screenOptions={{
         headerShown: false,
       }}>
       <Stack.Screen name="DarkLightTheme" component={DarkLightTheme} />
       <Stack.Screen name="CustomDropdown" component={CustomDropdown} />
-      <Stack.Screen name="DynamicForm" component={DynamicForm} />
       <Stack.Screen name="LoadMoreFlatlist" component={LoadMoreFlatlist} />
       <Stack.Screen name="Stripe" component={Stripe} />
+      <Stack.Screen name="ReduxExample" component={ReduxExample} />
+      <Stack.Screen name="ThunkExample" component={ThunkExample} />
     </Stack.Navigator>
   );
 };

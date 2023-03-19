@@ -80,7 +80,6 @@ const PaymentScreen = () => {
         onFocus={focusedField => {
           console.log('focusField', focusedField);
         }}
-        onD
       />
       <ButtonComp text="Pay" disabled={!cardInfo} onPress={onDone} />
     </SafeAreaView>
